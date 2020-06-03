@@ -22,8 +22,8 @@ function Particle(x,y) {
     }
     this.currentColor = col;
     stroke(rLive, gLive, bLive);
-    newx = this.x+random(-5,5);
-    newy = this.y+random(-5,5);
+    newx = this.x+random(-8,8);
+    newy = this.y+random(-8,8);
     line(this.x, this.y, newx, newy)
     this.x = newx;
     this.y = newy;
