@@ -20,10 +20,17 @@ function Particle(x,y) {
       gLive = floor(col[2]);
       bLive = floor(col[2]);
     }
+    let x = floor(random(0,3));
     this.currentColor = col;
-    stroke(rLive, gLive, bLive);
-    newx = this.x+random(-8,8);
-    newy = this.y+random(-8,8);
+    stroke(rLive, gLive, bLive, 150);
+
+    
+    newx = this.x+r*Math.cos(angle)*random(-1,1);
+    newy = this.y+r*Math.sin(angle)*random(-1,1);
+
+
+
+
     line(this.x, this.y, newx, newy)
     this.x = newx;
     this.y = newy;
