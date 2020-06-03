@@ -7,7 +7,7 @@ function Particle(x,y) {
     strokeWeight(random(1,4));
     var px = floor(this.x/vScale);
     var py = floor(this.y/vScale);
-    var col = video.get(px,py);
+    var col = subject.get(px,py);
     var rLive;
     var gLive;
     var bLive;
