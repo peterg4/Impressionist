@@ -1,0 +1,10 @@
+#defaultCanvas0{
+  margin: 0 auto;
+}
+#sketch-box{
+  display: flex;
+}
+#control-panel{
+  display: flex;
+  justify-content: center;
+}

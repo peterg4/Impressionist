@@ -17,17 +17,24 @@ var paintPhoto;
 let alignSlider, cohesionSlider, separationSlider;
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
+  let canvas = createCanvas(windowWidth/1.5, windowHeight/1.5);
+  canvas.parent('sketch-box');
   pixelDensity(1);
   paintCamera = createButton('Paint this!')
   paintCamera.mousePressed(paintImage);
   paintPhoto = createButton('Paint landscape!')
   paintPhoto.mousePressed(loadPhoto);
 
+  paintCamera.parent('control-panel');
+  paintPhoto.parent('control-panel');
+
   strokeWeightSlider = createSlider(2,10,3,1);
 
   let constraints = {
     video: {
+      mandatory: {
+        maxHeight: 100
+      },
       optional: [{ maxFrameRate: 30 }]
     },
     audio: false
@@ -35,6 +42,8 @@ function setup(){
   video = createCapture(constraints, function(stream) {
     console.log(stream);
   });
+  video.parent('control-panel');
+  strokeWeightSlider.parent('control-panel');
   background(51);
   for(let i = 0; i < 10; i++) {
     particles[i] = new Particle(random(width),random(height));
@@ -48,7 +57,7 @@ function paintImage() {
   drawing = true;
 }
 function loadPhoto() {
-  subject = loadImage('landscape.jpg');
+  subject = loadImage('bsg.jpg');
   drawing = true;
 }
 function draw() {

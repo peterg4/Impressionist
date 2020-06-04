@@ -5,11 +5,12 @@ function Particle(x,y) {
 
   this.update = () => {
     strokeWeight(random(strokeWeightSlider.value()-1,strokeWeightSlider.value()+1));
-    var px = floor(this.x/vScale);
-    var py = floor(this.y/vScale);
-    var col = subject.get(px,py);
-    var rLive;
-    var gLive;
+    let px = floor(this.x/vScale);
+    let py = floor(this.y/vScale);
+    let col = subject.get(px,py);
+    let rLive;
+    let gLive;
+    let mult = 1;
     var bLive;
     if(!(this.currentColor[0] == 0 && this.currentColor[1] == 0 && this.currentColor[2] == 0)) {
       rLive = floor((col[0]+this.currentColor[0])/2*.9);
