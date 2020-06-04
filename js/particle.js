@@ -6,9 +6,13 @@ function Particle(x,y) {
   this.update = (xOff, yOff) => {
     
     strokeWeight(random(strokeWeightSlider.value()-1,strokeWeightSlider.value()+1));
-    let px = floor(this.x/vScale);
-    let py = floor(this.y/vScale);
+    newx = xOff + r*Math.cos(angle)*random(-1,1);
+    newy = yOff + r*Math.sin(angle)*random(-1,1);
+
+    let px = floor(newx/vScale);
+    let py = floor(newy/vScale);
     let col = subject.get(px,py);
+
     let rLive;
     let gLive;
     let mult = 1;
@@ -22,18 +26,18 @@ function Particle(x,y) {
       gLive = floor(col[2]*1.1);
       bLive = floor(col[2]*1.1);
     }
-    let x = floor(random(0,3));
-    this.currentColor = col;
-    stroke(rLive, gLive, bLive, 150);
-
-    newx = xOff + r*Math.cos(angle)*random(-1,1);
-    newy = yOff + r*Math.sin(angle)*random(-1,1);
 
 
+    let tolerance = 20
 
-    if(newx !=0 && xOff != 0) {
+    if(Math.abs(col[0] - this.currentColor[0] < tolerance) && Math.abs(col[1] - this.currentColor[1] < tolerance) && Math.abs(col[2] - this.currentColor[2] < tolerance) ) {
+      stroke(rLive, gLive, bLive, 150);
       line(this.x, this.y, newx, newy);
+    } else {
+      stroke(this.currentColor[0], this.currentColor[1], this.currentColor[2], 150);
+      //line(this.x, this.y, newx, newy);
     }
+    this.currentColor = col;
     this.x = newx;
     this.y = newy;
     this.x = constrain(this.x, 0, width);
