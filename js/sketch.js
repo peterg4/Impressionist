@@ -38,8 +38,8 @@ function setup(){
   video = createCapture(constraints, function(stream) {
     console.log(stream);
   });
- // background(51);
-  for(let i = 0; i < 1000; i++) {
+  background(51);
+  for(let i = 0; i < 10; i++) {
     particles[i] = new Particle(random(width),random(height));
   }
   for (let i = 0; i < 50; i++) {
@@ -55,18 +55,18 @@ function loadPhoto() {
   drawing = true;
 }
 function draw() {
-  background(51);
+ // background(51);
   frameCounter++;
   angle = 0.1*frameCounter;
   if(drawing) {
     for(let particle of particles) {
       particle.update();
-    }
-    for(let boid of flock) {
+   }
+   /* for(let boid of flock) {
       boid.edges();
       boid.flock(flock);
       boid.update();
       boid.show();
-    }
+    }*/
   }
 }

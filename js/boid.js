@@ -4,7 +4,7 @@ class Boid {
     this.velocity = p5.Vector.random2D();
     this.velocity.setMag(random(2, 4));
     this.acceleration = createVector();
-    this.maxForce = 1;
+    this.maxForce = 1.2;
     this.maxSpeed = 4;
     this.currentColor =[0,0,0];
   }
@@ -48,7 +48,7 @@ class Boid {
   }
 
   separation(boids) {
-    let perceptionRadius = 50;
+    let perceptionRadius = 500;
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -66,7 +66,7 @@ class Boid {
       }
     }
     if (total > 0) {
-      steering.div(total);
+      steering.div(1);
       steering.setMag(this.maxSpeed);
       steering.sub(this.velocity);
       steering.limit(this.maxForce);
@@ -75,7 +75,7 @@ class Boid {
   }
 
   cohesion(boids) {
-    let perceptionRadius = 100;
+    let perceptionRadius = 10;
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -137,7 +137,7 @@ class Boid {
       gLive = floor(col[2]*1.1);
       bLive = floor(col[2]*1.1);
     }
-    strokeWeight(4);
+    strokeWeight(7);
     stroke(rLive, gLive, bLive);
     point(this.position.x, this.position.y);
   }

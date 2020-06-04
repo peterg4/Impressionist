@@ -25,8 +25,11 @@ function Particle(x,y) {
     stroke(rLive, gLive, bLive, 150);
 
     
-    newx = this.x+r*Math.cos(angle)*random(-1,1);
-    newy = this.y+r*Math.sin(angle)*random(-1,1);
+   /// newx = this.x+r*Math.cos(angle)*random(-1,1);
+  //  newy = this.y+r*Math.sin(angle)*random(-1,1);
+
+    newx = mouseX + r*Math.cos(angle)*random(-1,1);
+    newy = mouseY + r*Math.sin(angle)*random(-1,1);
 
 
 
