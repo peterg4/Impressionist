@@ -4,7 +4,7 @@ function Particle(x,y) {
   this.currentColor = [0, 0, 0];
 
   this.update = () => {
-    strokeWeight(random(1,4));
+    strokeWeight(random(strokeWeightSlider.value()-1,strokeWeightSlider.value()+1));
     var px = floor(this.x/vScale);
     var py = floor(this.y/vScale);
     var col = subject.get(px,py);
@@ -12,13 +12,13 @@ function Particle(x,y) {
     var gLive;
     var bLive;
     if(!(this.currentColor[0] == 0 && this.currentColor[1] == 0 && this.currentColor[2] == 0)) {
-      rLive = floor((col[0]+this.currentColor[0])/2);
-      gLive = floor((col[2]+this.currentColor[1])/2);
-      bLive = floor((col[2]+this.currentColor[2])/2);
+      rLive = floor((col[0]+this.currentColor[0])/2*.9);
+      gLive = floor((col[2]+this.currentColor[1])/2*.9);
+      bLive = floor((col[2]+this.currentColor[2])/2*.9);
     } else {  
-      rLive = floor(col[0]);
-      gLive = floor(col[2]);
-      bLive = floor(col[2]);
+      rLive = floor(col[0]*1.1);
+      gLive = floor(col[2]*1.1);
+      bLive = floor(col[2]*1.1);
     }
     let x = floor(random(0,3));
     this.currentColor = col;
