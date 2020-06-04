@@ -3,11 +3,8 @@ var vScale = 1;
 var angle = 20;
 var r = 8; //radius for brush
 var frameCounter = 0;
-const particles = [];
-const flock = []
-
-var xOff = 0;
-var yOff = 0;
+var particles = [];
+const bundles = []
 
 p5.disableFriendlyErrors = true; // disables FES
 var subject;
@@ -32,8 +29,6 @@ function setup(){
   paintPhoto.parent('control-panel');
 
   strokeWeightSlider = createSlider(2,10,3,1);
-  xOff = width/2;
-  yOff = height/2;
   let constraints = {
     video: {
       mandatory: {
@@ -49,11 +44,12 @@ function setup(){
   video.parent('control-panel');
   strokeWeightSlider.parent('control-panel');
   background(51);
-  for(let i = 0; i < 10; i++) {
-    particles[i] = new Particle(width/2,height/2);
-  }
-  for (let i = 0; i < 50; i++) {
-    flock.push(new Boid());
+  for(let i = 0; i < 100; i++) {
+    particles = [];
+    for(let j= 0; j < 10; j++) {
+      particles[j] = new Particle(width/2,height/2);
+    }
+    bundles[i] = new ParticleBundle(particles, random(0, width),random(0,height));
   }
 }
 function paintImage() {
@@ -62,9 +58,6 @@ function paintImage() {
 }
 function loadPhoto() {
   subject = loadImage('bsg.jpg');
-  //console.log(subject);
-  //console.log(subject._pixelsState.width, subject._pixelsState.height);
-  //resizeCanvas(subject._pixelsState.width, subject._pixelsState.height);
   drawing = true;
 }
 function draw() {
@@ -72,12 +65,8 @@ function draw() {
   frameCounter++;
   angle = 0.1*frameCounter;
   if(drawing) {
-    xOff+=random(-4,4);
-    yOff+=random(-4,4);
-    xOff.constrain(xOff, 0, width);
-    yOff.constrain(yOff, 0, height);
-    for(let particle of particles) {
-      particle.update();
+    for(let b of bundles) {
+      b.update();
    }
   }
 }

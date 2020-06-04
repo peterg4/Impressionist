@@ -3,7 +3,7 @@ function Particle(x,y) {
   this.y = y;
   this.currentColor = [0, 0, 0];
 
-  this.update = () => {
+  this.update = (xOff, yOff) => {
     
     strokeWeight(random(strokeWeightSlider.value()-1,strokeWeightSlider.value()+1));
     let px = floor(this.x/vScale);
@@ -39,8 +39,21 @@ function Particle(x,y) {
     this.x = constrain(this.x, 0, width);
     this.y = constrain(this.y, 0, height);
   }
+}
 
-  this.show = () => {
-    noStroke();
+function ParticleBundle(bundle, x, y) { 
+  this.bundle = bundle;
+  this.x = x;
+  this.y = y;
+
+  this.update = () => {
+    this.x += random(-4,4);
+    this.y += random(-4,4);
+    this.x = constrain(this.x, 0, width);
+    this.y = constrain(this.y, 0, height);
+    for (let p of bundle) {
+      p.update(this.x, this.y);
+    }
   }
+
 }
