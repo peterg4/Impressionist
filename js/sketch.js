@@ -1,8 +1,8 @@
 var video;
 var vScale = 1;
 var angle = 20;
-var r = 8; //radius
-var frameCounter = 0;//framecounter
+var r = 8; //radius for brush
+var frameCounter = 0;
 const particles = [];
 const flock = []
 
@@ -25,9 +25,6 @@ function setup(){
   paintPhoto.mousePressed(loadPhoto);
 
   strokeWeightSlider = createSlider(2,10,3,1);
-  alignSlider = createSlider(0, 2, 1, 0.1);
-  cohesionSlider = createSlider(0, 2, 1, 0.1);
-  separationSlider = createSlider(0, 2, 1, 0.1);
 
   let constraints = {
     video: {
@@ -51,7 +48,7 @@ function paintImage() {
   drawing = true;
 }
 function loadPhoto() {
-  subject = loadImage('bsg.jpg');
+  subject = loadImage('landscape.jpg');
   drawing = true;
 }
 function draw() {
@@ -62,11 +59,5 @@ function draw() {
     for(let particle of particles) {
       particle.update();
    }
-   /* for(let boid of flock) {
-      boid.edges();
-      boid.flock(flock);
-      boid.update();
-      boid.show();
-    }*/
   }
 }
