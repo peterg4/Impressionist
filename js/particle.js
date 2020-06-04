@@ -4,6 +4,7 @@ function Particle(x,y) {
   this.currentColor = [0, 0, 0];
 
   this.update = () => {
+    
     strokeWeight(random(strokeWeightSlider.value()-1,strokeWeightSlider.value()+1));
     let px = floor(this.x/vScale);
     let py = floor(this.y/vScale);
@@ -25,13 +26,14 @@ function Particle(x,y) {
     this.currentColor = col;
     stroke(rLive, gLive, bLive, 150);
 
-    newx = mouseX + r*Math.cos(angle)*random(-1,1);
-    newy = mouseY + r*Math.sin(angle)*random(-1,1);
+    newx = xOff + r*Math.cos(angle)*random(-1,1);
+    newy = yOff + r*Math.sin(angle)*random(-1,1);
 
 
 
-
-    line(this.x, this.y, newx, newy)
+    if(newx !=0 && xOff != 0) {
+      line(this.x, this.y, newx, newy);
+    }
     this.x = newx;
     this.y = newy;
     this.x = constrain(this.x, 0, width);
