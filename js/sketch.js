@@ -16,34 +16,20 @@ var paintPhoto;
 
 var input;
 function setup(){
-  input = createFileInput(handleFile);
-  input.position(0, 0);
+
   let canvas = createCanvas(windowWidth/1.1, windowHeight/1.1);
   canvas.parent('sketch-box');
-  pixelDensity(1);
-  paintCamera = createButton('Paint this!')
-  paintCamera.mousePressed(paintImage);
-  paintPhoto = createButton('Paint landscape!')
-  paintPhoto.mousePressed(loadPhoto);
-
-  paintCamera.parent('control-panel');
-  paintPhoto.parent('control-panel');
 
   strokeWeightSlider = createSlider(2,10,3,1);
-  let constraints = {
-    video: {
-      mandatory: {
-        maxHeight: 100
-      },
-      optional: [{ maxFrameRate: 30 }]
-    },
-    audio: false
-  };
-  video = createCapture(constraints, function(stream) {
-    console.log(stream);
-  });
-  video.parent('control-panel');
   strokeWeightSlider.parent('control-panel');
+
+  paintPhoto = createButton('Paint Upload')
+  paintPhoto.mousePressed(loadPhoto);
+  paintPhoto.parent('control-panel');
+
+  input = createFileInput(handleFile);
+  input.parent('control-panel');
+
   background(51);
   for(let i = 0; i < 100; i++) {
     particles = [];
@@ -62,12 +48,6 @@ function handleFile(file) {
     subject = null;
   }
 }
-
-function paintImage() {
-  subject = video.get();
-  drawing = true;
-}
-
 function loadPhoto() {
   if(subject === undefined)
     subject = loadImage('tk.jpg')
