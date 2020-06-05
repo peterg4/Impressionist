@@ -14,10 +14,11 @@ var strokeWeightSlider;
 var paintCamera;
 var paintPhoto;
 
-let alignSlider, cohesionSlider, separationSlider;
-
+var input;
 function setup(){
-  let canvas = createCanvas(windowWidth/1.5, windowHeight/1.5);
+  input = createFileInput(handleFile);
+  input.position(0, 0);
+  let canvas = createCanvas(windowWidth/1.1, windowHeight/1.1);
   canvas.parent('sketch-box');
   pixelDensity(1);
   paintCamera = createButton('Paint this!')
@@ -52,12 +53,24 @@ function setup(){
     bundles[i] = new ParticleBundle(particles, random(0, width),random(0,height));
   }
 }
+
+function handleFile(file) {
+  print(file);
+  if (file.type === 'image') {
+    subject = loadImage(file.data, '');
+  } else {
+    subject = null;
+  }
+}
+
 function paintImage() {
   subject = video.get();
   drawing = true;
 }
+
 function loadPhoto() {
-  subject = loadImage('bsg.jpg');
+  if(subject === undefined)
+    subject = loadImage('tk.jpg')
   drawing = true;
 }
 function draw() {

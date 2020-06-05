@@ -18,9 +18,9 @@ function Particle(x,y) {
     let mult = 1;
     var bLive;
     if(!(this.currentColor[0] == 0 && this.currentColor[1] == 0 && this.currentColor[2] == 0)) {
-      rLive = floor((col[0]+this.currentColor[0])/2*.9);
-      gLive = floor((col[2]+this.currentColor[1])/2*.9);
-      bLive = floor((col[2]+this.currentColor[2])/2*.9);
+      rLive = floor((col[0]+this.currentColor[0])/2);
+      gLive = floor((col[2]+this.currentColor[1])/2);
+      bLive = floor((col[2]+this.currentColor[2])/2);
     } else {  
       rLive = floor(col[0]*1.1);
       gLive = floor(col[2]*1.1);
