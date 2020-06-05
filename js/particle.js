@@ -32,7 +32,8 @@ function Particle(x,y) {
 
     if(Math.abs(col[0] - this.currentColor[0] < tolerance) && Math.abs(col[1] - this.currentColor[1] < tolerance) && Math.abs(col[2] - this.currentColor[2] < tolerance) ) {
       stroke(rLive, gLive, bLive, 150);
-      line(this.x, this.y, newx, newy);
+      if(dist(this.x, this.y, newx, newy) < 10)
+        line(this.x, this.y, newx, newy);
     } else {
       stroke(this.currentColor[0], this.currentColor[1], this.currentColor[2], 150);
       //line(this.x, this.y, newx, newy);
