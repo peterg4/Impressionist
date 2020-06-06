@@ -1,12 +1,15 @@
 var video;
 var vScale = 1;
+p5.disableFriendlyErrors = true; // disables FES
+
 var angle = 20;
 var r = 8; //radius for brush
 var frameCounter = 0;
-var particles = [];
-const bundles = []
 
-p5.disableFriendlyErrors = true; // disables FES
+var particles = [];
+const bundles = [];
+let bundleCount = 500;
+
 var subject;
 var drawing = false;
 
@@ -31,7 +34,7 @@ function setup(){
   input.parent('control-panel');
 
   background(51);
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < bundleCount; i++) {
     particles = [];
     for(let j= 0; j < 10; j++) {
       particles[j] = new Particle(width/2,height/2);
