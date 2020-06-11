@@ -1,2 +1,2 @@
 # Impressionist
- Turns video capture into impressionist style paintings
+ Turns uploaded images into impressionist style paintings
